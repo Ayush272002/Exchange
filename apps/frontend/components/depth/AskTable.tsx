@@ -5,13 +5,14 @@ const AskTable = ({ asks }: { asks: [string, string][] }) => {
   const relevantAsks = asks.slice(0, 15);
   relevantAsks.reverse();
 
-  const asksWithTotal: [string, string, number][] = relevantAsks.map(
-    ([price, quantity]) => [
-      price,
-      quantity,
-      (currentTotal += Number(quantity)),
-    ],
-  );
+  let asksWithTotal: [string, string, number][] = [];
+  for (let i = relevantAsks.length - 1; i >= 0; i--) {
+    const ask = relevantAsks[i];
+    if (ask) {
+      const [price, quantity] = ask;
+      asksWithTotal.push([price, quantity, (currentTotal += Number(quantity))]);
+    }
+  }
   const maxTotal = relevantAsks.reduce(
     (acc, [_, quantity]) => acc + Number(quantity),
     0,

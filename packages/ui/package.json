@@ -5,7 +5,13 @@
   "exports": {
     "./tableHeader": "./src/TableHeader.tsx",
     "./ask": "./src/Ask.tsx",
-    "./bid": "./src/Bid.tsx"
+    "./bid": "./src/Bid.tsx",
+    "./primaryButton": "./src/PrimaryButton.tsx",
+    "./sucessButton": "./src/SuccessButton.tsx",
+    "./limitButton": "./src/LimitButton.tsx",
+    "./marketButton": "./src/MarketButton.tsx",
+    "./buyButton": "./src/BuyButton.tsx",
+    "./sellButton": "./src/SellButton.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
