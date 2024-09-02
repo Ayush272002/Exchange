@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { ChartManager } from "../utils/chartManager";
 import KLine from "@repo/types/kline";
 import { getKlines } from "../utils/httpClient";
+import { SignalingManager } from "../utils/SignalingManager";
 
 const TradeView = ({ market }: { market: string }) => {
   const chartRef = useRef<HTMLDivElement>(null);
@@ -42,6 +43,30 @@ const TradeView = ({ market }: { market: string }) => {
         );
         chartManagerRef.current = chartManager;
       }
+
+      SignalingManager.getInstance().registerCallback(
+        "kline",
+        (data: any) => {
+          chartManagerRef.current?.update(data);
+        },
+        `Kline-${market}`,
+      );
+
+      SignalingManager.getInstance().sendMessage({
+        method: "SUBSCRIBE",
+        params: [`kline.5m.${market}`],
+      });
+
+      return () => {
+        SignalingManager.getInstance().deRegisterCallback(
+          "kline",
+          `Kline-${market}`,
+        );
+        SignalingManager.getInstance().sendMessage({
+          method: "UNSUBSCRIBE",
+          params: [`kline.5m.${market}`],
+        });
+      };
     };
     init();
   }, [market, chartRef]);

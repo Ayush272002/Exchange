@@ -54,6 +54,18 @@ export class SignalingManager {
             const updatedAsks = message.data.a;
             callback({ bids: updatedBids, asks: updatedAsks });
           }
+
+          if (type === "kline") {
+            const newKline = {
+              close: parseFloat(message.data.c),
+              start: message.data.t,
+              high: parseFloat(message.data.h),
+              low: parseFloat(message.data.l),
+              open: parseFloat(message.data.o),
+            };
+            console.log(newKline);
+            callback(newKline);
+          }
         });
       }
     };
