@@ -37,6 +37,7 @@ const config: Config = {
       },
       textColor: {
         greenPrimaryButtonText: "rgb(20,21,27)",
+        greenText: "rgba(0, 194, 120, 1)",
       },
     },
   },

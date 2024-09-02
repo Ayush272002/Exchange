@@ -3,8 +3,10 @@ import Depth from "@repo/types/depth";
 import KLine from "@repo/types/kline";
 import Ticker from "@repo/types/ticker";
 import Trade from "@repo/types/trade";
+import { MarketData } from "@repo/types/marketData";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const MARKET_URL = process.env.NEXT_PUBLIC_MARKET_BASE_URL;
 
 export async function getTicker(market: string): Promise<Ticker> {
   const tickers = await getTickers();
@@ -43,4 +45,19 @@ export async function getKlines(
   );
   const data: KLine[] = res.data;
   return data.sort((x, y) => (Number(x.end) < Number(y.end) ? -1 : 1));
+}
+
+export async function getMarketData() {
+  const response = await axios.get(`${MARKET_URL}`);
+  const marketArray = response.data;
+  const filteredMarketData: MarketData[] = [];
+  marketArray.forEach((market: any) => {
+    filteredMarketData.push({
+      name: market.name,
+      symbol: market.symbol,
+      image: market.image,
+      market_cap: market.market_cap,
+    });
+  });
+  return filteredMarketData;
 }

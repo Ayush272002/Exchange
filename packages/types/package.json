@@ -13,6 +13,8 @@
     "./depth": "./src/depth.ts",
     "./kline": "./src/kline.ts",
     "./ticker": "./src/ticker.ts",
-    "./trade": "./src/trade.ts"
+    "./trade": "./src/trade.ts",
+    "./market": "./src/market.ts",
+    "./marketData": "./src/marketData.ts"
   }
 }
