@@ -6,7 +6,11 @@
     "dev": "turbo dev",
     "lint": "turbo lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "start-frontend": "cd apps/frontend && npm run build && npm run start",
+    "start-api": "cd apps/api && npm run build && npm run start",
+    "db:seed": "cd packages/psql && npm run seed:db",
+    "refresh:views": "cd packages/psql && npm run refresh:views"
   },
   "devDependencies": {
     "husky": "^9.1.5",

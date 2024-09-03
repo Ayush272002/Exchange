@@ -1,0 +1,24 @@
+{
+  "name": "@repo/psql",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc -b",
+    "seed:db": "npm run build && node dist/utils/seed.js",
+    "refresh:views": "npm run build && node dist/utils/cron.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "pg": "^8.12.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.8"
+  },
+  "exports": {
+    "./psqlClient": "./src/index.ts"
+  }
+}
