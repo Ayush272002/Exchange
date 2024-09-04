@@ -9,6 +9,8 @@ COPY packages ./packages
 
 RUN npm install
 
+RUN npm run db:seed
+
 RUN npm run build:dbProcessor
 
 CMD ["npm", "run", "start-dbProcessor"]

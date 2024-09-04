@@ -41,7 +41,7 @@ services:
   mm:
     image: ayush272002/exchange-mm:latest
     environment:
-      - BASE_URL=http://localhost:8000
+      - BASE_URL=http://api:8000
     depends_on:
       - api
 
@@ -81,6 +81,9 @@ services:
     container_name: redis
     ports:
       - "6379:6379"
+    volumes:
+      - redis-data:/data
 
 volumes:
   timescale-data:
+  redis-data:
