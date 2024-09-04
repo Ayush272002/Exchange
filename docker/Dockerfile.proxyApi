@@ -13,4 +13,4 @@ RUN npm run build:proxyApi
 
 EXPOSE 8002
 
-CMD ["npm", "run", "start:proxyApi"]
+CMD ["npm", "run", "start-proxyApi"]
