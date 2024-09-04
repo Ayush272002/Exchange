@@ -10,7 +10,9 @@
     "start-frontend": "cd apps/frontend && npm run build && npm run start",
     "start-api": "cd apps/api && npm run build && npm run start",
     "db:seed": "cd packages/psql && npm run seed:db",
-    "refresh:views": "cd packages/psql && npm run refresh:views"
+    "refresh:views": "cd packages/psql && npm run refresh:views",
+    "build:proxyApi" : "cd apps/proxyApi && npm run build",
+    "start-proxyApi" : "cd apps/proxyApi && npm run start"
   },
   "devDependencies": {
     "husky": "^9.1.5",
