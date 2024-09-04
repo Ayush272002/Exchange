@@ -8,11 +8,20 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepare": "husky",
     "start-frontend": "cd apps/frontend && npm run build && npm run start",
+    "start-fe2": "cd apps/fe2 && npm run build && npm run start",
     "start-api": "cd apps/api && npm run build && npm run start",
     "db:seed": "cd packages/psql && npm run seed:db",
     "refresh:views": "cd packages/psql && npm run refresh:views",
     "build:proxyApi" : "cd apps/proxyApi && npm run build",
-    "start-proxyApi" : "cd apps/proxyApi && npm run start"
+    "start-proxyApi" : "cd apps/proxyApi && npm run start",
+    "build:ws" : "cd apps/ws && npm run build",
+    "start-ws" : "cd apps/ws && npm run start",
+    "build:mm": "cd apps/mm && npm run build",
+    "start-mm": "cd apps/mm && npm run start",
+    "build:engine": "cd apps/engine && npm run build",
+    "start-engine": "cd apps/engine && npm run start",
+    "build:dbProcessor": "cd apps/dbProcessor && npm run build",
+    "start-dbProcessor": "cd apps/dbProcessor && npm run start"
   },
   "devDependencies": {
     "husky": "^9.1.5",

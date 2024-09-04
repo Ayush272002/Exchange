@@ -21,6 +21,16 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: Build and push frontend
+        run: |
+          docker build -f docker/Dockerfile.frontend -t ayush272002/exchange-frontend:latest .
+          docker push ayush272002/exchange-frontend:latest
+
+      - name: Build and push fe2
+        run: |
+          docker build -f docker/Dockerfile.fe2 -t ayush272002/exchange-fe2:latest .
+          docker push ayush272002/exchange-fe2:latest
       
       - name: Build and push api
         run: |
@@ -32,12 +42,62 @@ jobs:
           docker build -f docker/Dockerfile.proxyApi -t ayush272002/exchange-proxy-api:latest .
           docker push ayush272002/exchange-proxy-api:latest
       
+      - name: Build and push engine image
+        run: |
+          docker build -f docker/Dockerfile.engine -t ayush272002/exchange-engine:latest .
+          docker push ayush272002/exchange-engine:latest
+
+      - name: Build and push mm image
+        run: |
+          docker build -f docker/Dockerfile.mm -t ayush272002/exchange-mm:latest .
+          docker push ayush272002/exchange-mm:latest
+
+      - name: Build and push dbProcessor image
+        run: |
+          docker build -f docker/Dockerfile.dbProcessor -t ayush272002/exchange-db-processor:latest .
+          docker push ayush272002/exchange-db-processor:latest
+
+      - name: Build and push ws image
+        run: |
+          docker build -f docker/Dockerfile.ws -t ayush272002/exchange-ws:latest .
+          docker push ayush272002/exchange-ws:latest
+
+      - name: Verify frontend image by pulling
+        run: |
+          docker pull ayush272002/exchange-frontend:latest
+          docker images | grep ayush272002/exchange-frontend
+
+      - name: Verify fe2 image by pulling
+        run: |
+          docker pull ayush272002/exchange-fe2:latest
+          docker images | grep ayush272002/exchange-fe2
+      
       - name: Verify api image by pulling
         run: |
           docker pull ayush272002/exchange-api:latest
           docker images | grep ayush272002/exchange-api
 
-      - name: Verify worker image by pulling
+      - name: Verify proxyApi image by pulling
         run: |
           docker pull ayush272002/exchange-proxy-api:latest
           docker images | grep ayush272002/exchange-proxy-api
+
+      - name: Verify engine image by pulling
+        run: |
+          docker pull ayush272002/exchange-engine:latest
+          docker images | grep ayush272002/exchange-engine
+
+      - name: Verify mm image by pulling
+        run: |
+          docker pull ayush272002/exchange-mm:latest
+          docker images | grep ayush272002/exchange-mm
+
+      - name: Verify dbProcessor image by pulling
+        run: |
+          docker pull ayush272002/exchange-db-processor:latest
+          docker images | grep ayush272002/exchange-db-processor
+
+      - name: Verify ws image by pulling
+        run: |
+          docker pull ayush272002/exchange-ws:latest
+          docker images | grep ayush272002/exchange-ws
