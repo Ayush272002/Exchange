@@ -1,6 +1,9 @@
 import axios from "axios";
+import dotenv from "dotenv";
 
-const BASE_URL = "http://localhost:8000";
+dotenv.config();
+
+const BASE_URL = process.env.BASE_URL;
 const TOTAL_BIDS = 15;
 const TOTAL_ASK = 15;
 const MARKET = "SAMSUNG_GBP";

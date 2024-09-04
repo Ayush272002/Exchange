@@ -62,6 +62,11 @@ jobs:
           docker build -f docker/Dockerfile.ws -t ayush272002/exchange-ws:latest .
           docker push ayush272002/exchange-ws:latest
 
+      - name: Build and push proxy ws image
+        run: |
+          docker build -f docker/Dockerfile.proxyWs -t ayush272002/exchange-proxy-ws:latest .
+          docker push ayush272002/exchange-proxy-ws:latest
+
       - name: Verify frontend image by pulling
         run: |
           docker pull ayush272002/exchange-frontend:latest
@@ -101,3 +106,8 @@ jobs:
         run: |
           docker pull ayush272002/exchange-ws:latest
           docker images | grep ayush272002/exchange-ws
+
+      - name: Verify proxy ws image by pulling
+        run: |
+          docker pull ayush272002/exchange-proxy-ws:latest
+          docker images | grep ayush272002/exchange-proxy-ws

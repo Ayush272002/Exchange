@@ -21,7 +21,9 @@
     "build:engine": "cd apps/engine && npm run build",
     "start-engine": "cd apps/engine && npm run start",
     "build:dbProcessor": "cd apps/dbProcessor && npm run build",
-    "start-dbProcessor": "cd apps/dbProcessor && npm run start"
+    "start-dbProcessor": "cd apps/dbProcessor && npm run start",
+    "build:proxyws": "cd apps/proxyWs && npm run build",
+    "start-proxyws": "cd apps/proxyWs && npm run start"
   },
   "devDependencies": {
     "husky": "^9.1.5",

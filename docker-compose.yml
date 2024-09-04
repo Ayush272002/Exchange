@@ -1,0 +1,86 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: ayush272002/exchange-frontend:latest
+    environment:
+      - NEXT_PUBLIC_API_BASE_URL=https://exchange-proxyapi.onrender.com/base
+      - NEXT_PUBLIC_WS_BASE_URL=ws://localhost:8080
+      - NEXT_PUBLIC_MARKET_BASE_URL=https://exchange-proxyapi.onrender.com/market
+    depends_on:
+      - api
+      - ws
+      - mm
+      - engine
+      - dbProcessor
+      - timescaledb
+      - redis
+    ports:
+      - "3000:3000"
+
+  api: 
+    image: ayush272002/exchange-api:latest
+    environment:
+      - PORT=8000
+      - PGUSER=postgres
+      - PGHOST=localhost
+      - PGDATABASE=postgres
+      - PGPASSWORD=mysecretpassword
+      - PGPORT=5432
+    depends_on:
+      - timescaledb
+      - redis
+    ports:
+      - "8000:8000"
+
+  ws: 
+    image: ayush272002/exchange-ws:latest
+    ports:
+      - "8001:8001"
+
+  mm:
+    image: ayush272002/exchange-mm:latest
+    environment:
+      - BASE_URL=http://localhost:8000
+    depends_on:
+      - api
+
+  engine:
+    image: ayush272002/exchange-engine:latest
+    environment:
+      - WITH_SNAPSHOT=true
+    depends_on:
+      - redis
+  
+  dbProcessor:
+    image: ayush272002/exchange-db-processor:latest
+    environment:
+      - PGUSER=postgres
+      - PGHOST=localhost
+      - PGDATABASE=postgres
+      - PGPASSWORD=mysecretpassword
+      - PGPORT=5432
+    depends_on:
+      - timescaledb
+      - redis
+
+  timescaledb:
+    image: timescale/timescaledb:latest-pg12
+    container_name: timescaledb
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_DB: postgres
+    volumes:
+      - timescale-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  timescale-data:
