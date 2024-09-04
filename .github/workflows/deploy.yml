@@ -21,13 +21,23 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
+      
+      - name: Build and push api
+        run: |
+          docker build -f docker/Dockerfile.api -t ayush272002/exchange-api:latest .
+          docker push ayush272002/exchange-api:latest
 
       - name: Build and push proxyApi image
         run: |
-          docker build -f docker/Dockerfile.proxyApi -t ayush272002/exchange:proxyApi .
-          docker push ayush272002/exchange:proxyApi
+          docker build -f docker/Dockerfile.proxyApi -t ayush272002/exchange-proxy-api:latest .
+          docker push ayush272002/exchange-proxy-api:latest
+      
+      - name: Verify api image by pulling
+        run: |
+          docker pull ayush272002/exchange-api:latest
+          docker images | grep ayush272002/exchange-api
 
       - name: Verify worker image by pulling
         run: |
-          docker pull ayush272002/exchange:proxyApi
-          docker images | grep ayush272002/exchange:proxyApi
+          docker pull ayush272002/exchange-proxy-api:latest
+          docker images | grep ayush272002/exchange-proxy-api
