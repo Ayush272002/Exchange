@@ -9,6 +9,8 @@ COPY packages ./packages
 
 RUN npm install
 
+RUN npm run db:seed
+
 EXPOSE 8000
 
 CMD ["npm", "run", "start-api"]
