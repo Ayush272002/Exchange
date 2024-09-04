@@ -5,7 +5,7 @@ services:
     image: ayush272002/exchange-frontend:latest
     environment:
       - NEXT_PUBLIC_API_BASE_URL=https://exchange-proxyapi.onrender.com/base
-      - NEXT_PUBLIC_WS_BASE_URL=ws://localhost:8080
+      - NEXT_PUBLIC_WS_BASE_URL=wss://exchange-proxy-ws-latest.onrender.com
       - NEXT_PUBLIC_MARKET_BASE_URL=https://exchange-proxyapi.onrender.com/market
     depends_on:
       - api
@@ -23,7 +23,7 @@ services:
     environment:
       - PORT=8000
       - PGUSER=postgres
-      - PGHOST=localhost
+      - PGHOST=timescaledb
       - PGDATABASE=postgres
       - PGPASSWORD=mysecretpassword
       - PGPORT=5432
@@ -56,7 +56,7 @@ services:
     image: ayush272002/exchange-db-processor:latest
     environment:
       - PGUSER=postgres
-      - PGHOST=localhost
+      - PGHOST=timescaledb
       - PGDATABASE=postgres
       - PGPASSWORD=mysecretpassword
       - PGPORT=5432

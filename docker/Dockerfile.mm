@@ -11,4 +11,4 @@ RUN npm install
 
 RUN npm run build:mm
 
-CMD ["npm", "run", "start:mm"]
+CMD ["npm", "run", "start-mm"]
