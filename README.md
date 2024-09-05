@@ -28,6 +28,12 @@ This project is a fully-featured cryptocurrency exchange platform designed to ha
 7. Redis - Queue and pub sub
 8. TimescaleDB - Creates buckets of klines based on price feed
 
+## Preview
+
+<video controls>
+  <source src="images/preview.mp4" type="video/mp4">
+</video>
+
 ## Running the project locally
 
 There is a [docker-compose.yml](./docker-compose.yml) in each of the services fill in the environment variables after that in the project's root dir run
