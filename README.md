@@ -1,81 +1,51 @@
-# Turborepo starter
+# Exchange
 
-This is an official starter Turborepo.
+This project is a fully-featured cryptocurrency exchange platform designed to handle high-frequency trading and real-time market interactions. It includes an API server for user requests, a memory-based engine for order book management and balance tracking, and a WebSocket server for live updates. The platform integrates a DB Processor for persistent data storage, a frontend built with Next.js, and a Market Maker for liquidity. Redis is used for queuing and pub/sub messaging, while TimescaleDB handles time-series data for advanced kline charting. Together, these components create a robust, scalable trading environment for both developers and users.
 
-## Using this example
+## Tech Stack
+- Typescript
+- Monorepo/ Turborepo
+- Next.js 
+- Expressjs
+- Redis
+- Redis Pub Subs
+- Websockets
+- Timescale Db
+- Docker
+- CI/CD
+- Husky
 
-Run the following command:
+## Architecture
 
-```sh
-npx create-turbo@latest
+![workflow](images/workflow.png)
+
+1. <span style="color: lightgreen;">API - An API Server the user sends HTTP requests to</span>
+2. <span style="color: red;">Engine - Runs various market orderbooks, stores user balances in memory</span>
+3. <span style="color: #9B59B6;">Websocket - Websocket server that user subscribes to real time events from</span>
+4. <span style="color: orange;">DB Processor - Processes messages from the `Engine` and persists them in the DB</span>
+5. Frontend - NextJS app (same as last week, only the URLs would change)
+6. Market maker (mm) - Places random orders to keep the book liquid
+7. Redis - Queue and pub sub
+8. TimescaleDB - Creates buckets of klines based on price feed
+
+## Running the project locally
+
+There is a [docker-compose.yml](./docker-compose.yml) in each of the services fill in the environment variables after that in the project's root dir run
+
+```shell
+git clone https://github.com/Ayush272002/Exchange.git
+cd Exchange
+docker-compose up
 ```
 
-## What's inside?
+## Contributing
 
-This Turborepo includes the following packages/apps:
+Contributions are welcome! If you have suggestions for new features, bug fixes, or improvements, please fork the repository and submit a pull request. For major changes, please open an issue first to discuss what you would like to change.
 
-### Apps and Packages
+## License
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+## Contact
 
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
-```
-
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm dev
-```
-
-### Remote Caching
-
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+If you have any questions or suggestions, please feel free to contact.

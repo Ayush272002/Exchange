@@ -34,7 +34,7 @@ const Depth = ({ market }: { market: string }) => {
             }
           }
           // remove 0 quantity data
-          newBids = newBids.filter((bid) => bid[1] !== "0.00");
+          newBids = newBids.filter((bid) => parseFloat(bid[1]) !== 0);
           //reverse sort by pppu and take the first 15
           newBids = newBids
             .sort((a, b) => Number(b[0]) - Number(a[0]))
@@ -58,7 +58,7 @@ const Depth = ({ market }: { market: string }) => {
             }
           }
           // remove 0 quantity data
-          newAsks = newAsks.filter((ask) => ask[1] !== "0.00");
+          newAsks = newAsks.filter((ask) => parseFloat(ask[1]) !== 0);
           // sort by ppu
           newAsks = newAsks
             .sort((a, b) => Number(a[0]) - Number(b[0]))
