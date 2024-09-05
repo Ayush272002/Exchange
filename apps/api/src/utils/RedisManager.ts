@@ -1,6 +1,9 @@
 import { RedisClientType, createClient } from "redis";
 import { MessageFromOrderbook } from "../types";
 import { MessageToEngine } from "../types/to";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 export class RedisManager {
   private client: RedisClientType;
@@ -8,10 +11,10 @@ export class RedisManager {
   private static instance: RedisManager;
 
   private constructor() {
-    this.client = createClient({url : process.env.REDIS_URL});
+    this.client = createClient({ url: process.env.REDIS_URL });
     this.client.connect();
 
-    this.publisher = createClient({url : process.env.REDIS_URL});
+    this.publisher = createClient({ url: process.env.REDIS_URL });
     this.publisher.connect();
   }
 

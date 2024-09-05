@@ -20,6 +20,7 @@ services:
 
   api: 
     image: ayush272002/exchange-api:latest
+    container_name: api
     environment:
       - PORT=8000
       - PGUSER=postgres
@@ -27,6 +28,7 @@ services:
       - PGDATABASE=postgres
       - PGPASSWORD=mysecretpassword
       - PGPORT=5432
+      - REDIS_URL=redis://redis:6379
     depends_on:
       - timescaledb
       - redis

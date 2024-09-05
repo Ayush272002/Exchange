@@ -10,6 +10,7 @@ const MARKET = "SAMSUNG_GBP";
 const USER_ID = "5";
 
 async function main() {
+  console.log("Base URL: ", BASE_URL);
   const price = 1000 + Math.random() * 10;
   const openOrders = await axios.get(
     `${BASE_URL}/api/v1/order?userId=${USER_ID}&market=${MARKET}`,

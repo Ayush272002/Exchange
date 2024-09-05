@@ -3,7 +3,7 @@ import { createClient } from "redis";
 
 async function main() {
   const engine = new Engine();
-  const redisClient = createClient();
+  const redisClient = createClient({ url: process.env.REDIS_URL });
   await redisClient.connect();
 
   console.log("connected to redis");
