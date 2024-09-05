@@ -30,9 +30,9 @@ This project is a fully-featured cryptocurrency exchange platform designed to ha
 
 ## Preview
 
-<video controls>
-  <source src="images/preview.mp4" type="video/mp4">
-</video>
+<p align="center">
+  <img src="images/preview.gif" />
+</p>
 
 ## Running the project locally
 
